@@ -17,7 +17,6 @@ setup(
 		'panflute',
 		'requests',
 	],
-	entry_points={},
 	classifiers=[
 		'Programming Language :: Python :: 3',
 		'License :: OSI Approved :: MIT License',
