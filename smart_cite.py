@@ -4,6 +4,7 @@ import panflute as pf
 import requests
 import re
 import os
+import sys
 import shutil
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -83,6 +84,7 @@ def action(elem, doc):
       cid = c.id.lower()
       if cid.startswith("doi:") or cid.startswith("arxiv:"):
         dois.add(cid)
+        c.id = cid.lower()
 
 def prepare(doc):
   global user_bib_path
