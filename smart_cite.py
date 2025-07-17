@@ -6,6 +6,7 @@ import re
 import os
 import sys
 import shutil
+import html
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from urllib.parse import quote
@@ -26,14 +27,14 @@ def fetch_arxiv_bibtex(arxivid):
   resp = requests.get(url)
   if resp.status_code != 200:
     return None
-  return resp.text.strip()
+  return html.unescape(resp.text.strip())
 
 def fetch_doi_bibtex(doi):
   headers = {"Accept": "application/x-bibtex"}
   resp = requests.get(f"https://doi.org/{doi}", headers=headers)
   if resp.status_code != 200:
     return None
-  return resp.text.strip()
+  return html.unescape(resp.text.strip())
 
 def fetch_bibtex(key):
   if key.startswith("doi:"):
